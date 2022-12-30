@@ -2,10 +2,11 @@ import 'package:chat_app/controller/login_controller.dart';
 import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/models/UsersModel.dart';
 import 'package:chat_app/view/screen/main_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chat_app/view/widget/custom_button.dart';
+import 'package:chat_app/view/widget/custom_filed.dart';
+import 'package:chat_app/view/widget/custom_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 
 class BodyLogin extends StatelessWidget {
@@ -34,84 +35,17 @@ class BodyLogin extends StatelessWidget {
                   SizedBox(
                     height: 80.h,
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.text,
-                    controller: controller.email,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "The field is empty !";
-                      }
-                    },
-                    style: const TextStyle(
-                        fontFamily: "Roboto", color: Colors.white),
-                    decoration: InputDecoration(
-                        labelText: "Enter Your Email",
-                        labelStyle: const TextStyle(
-                            color: Colors.white, fontFamily: "Roboto"),
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          color: Color(0xff04BF68),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white))),
-                  ),
+                  CustomFiled(
+                      controller: controller.email, label: "Enter Your Email"),
                   SizedBox(
                     height: 20.h,
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "The field is empty !";
-                      } else if (value.length < 8) {
-                        return "The password is too short !";
-                      }
-                    },
-                    style: const TextStyle(
-                        fontFamily: "Roboto", color: Colors.white),
+                  CustomPassword(
                     obscureText: controller.show_pass,
                     controller: controller.password,
-                    decoration: InputDecoration(
-                        labelText: "Enter Your Password",
-                        labelStyle: const TextStyle(
-                            color: Colors.white, fontFamily: "Roboto"),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                          color: Color(0xff04BF68),
-                        ),
-                        suffixIcon: InkWell(
-                          child: Icon(
-                            controller.show_pass
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Color(0xff04BF68),
-                          ),
-                          onTap: () {
-                            controller.showPassword();
-                          },
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15).r,
-                            borderSide: const BorderSide(color: Colors.white))),
+                    function: () {
+                      controller.showPassword();
+                    },
                   ),
                   SizedBox(
                     height: 15.h,
@@ -130,29 +64,17 @@ class BodyLogin extends StatelessWidget {
                   SizedBox(
                     height: 15.h,
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
+                  CustomButton(
+                      name: "SIGN IN",
+                      function: () {
                         if (controller.globalKey.currentState!.validate()) {
                           FirebaseAuthController.firebaseAuthHelper.signIn(
                               Users(
                                   email: controller.email.text,
                                   password: controller.password.text));
-                          Get.to(() => MainScreen());
+                          Get.to(() =>const MainScreen());
                         }
-                      },
-                      child: Text(
-                        "SIGN IN",
-                        style: TextStyle(fontFamily: "Roboto"),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xff04BF68),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15).r),
-                          padding: const EdgeInsets.all(15)),
-                    ),
-                  ),
+                      }),
                   SizedBox(
                     height: 40.r,
                   ),

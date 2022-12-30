@@ -1,9 +1,9 @@
 import 'dart:io';
-
 import 'package:chat_app/controller/signup_controller.dart';
-import 'package:chat_app/firebase/firebase_auth.dart';
-import 'package:chat_app/models/UsersModel.dart';
-import 'package:chat_app/view/screen/select_photo.dart';
+import 'package:chat_app/core/register.dart';
+import 'package:chat_app/view/widget/custom_button.dart';
+import 'package:chat_app/view/widget/custom_filed.dart';
+import 'package:chat_app/view/widget/custom_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,11 +25,6 @@ class BodySignUp extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    // Image.asset(
-                    //   "assets/images/logo.png",
-                    //   width: double.infinity,
-                    //   height: 120.h,
-                    // ),
                     Center(
                       child: GestureDetector(
                         onTap: () {
@@ -42,7 +37,7 @@ class BodySignUp extends StatelessWidget {
                                 ? null
                                 : FileImage(File(controller.file!.path)),
                             child: controller.file == null
-                                ? Icon(
+                                ? const Icon(
                                     Icons.add_photo_alternate,
                                     size: 50,
                                     color: Color(0xff04BF68),
@@ -53,197 +48,33 @@ class BodySignUp extends StatelessWidget {
                     SizedBox(
                       height: 50.h,
                     ),
-                    TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: controller.username,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "The field is empty !";
-                        }
-                      },
-                      style: const TextStyle(
-                          fontFamily: "Roboto", color: Colors.white),
-                      decoration: InputDecoration(
-                          labelText: "Enter Your Username",
-                          labelStyle: const TextStyle(
-                              color: Colors.white, fontFamily: "Roboto"),
-                          prefixIcon: const Icon(
-                            Icons.person,
-                            color: Color(0xff04BF68),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white))),
-                    ),
+                    CustomFiled(
+                        controller: controller.username,
+                        label: "Enter Your Username"),
                     SizedBox(
                       height: 15.h,
                     ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "The field is empty !";
-                        }
-                      },
-                      keyboardType: TextInputType.text,
-                      controller: controller.phone,
-                      style: const TextStyle(
-                          fontFamily: "Roboto", color: Colors.white),
-                      decoration: InputDecoration(
-                          labelText: "Enter Your Phone",
-                          labelStyle: const TextStyle(
-                              color: Colors.white, fontFamily: "Roboto"),
-                          prefixIcon: const Icon(
-                            Icons.phone,
-                            color: Color(0xff04BF68),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white))),
-                    ),
+                    CustomFiled(
+                        controller: controller.email,
+                        label: "Enter Your Email"),
                     SizedBox(
                       height: 15.h,
                     ),
-                    TextFormField(
-                      keyboardType: TextInputType.text,
-                      controller: controller.email,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "The field is empty !";
-                        }
-                      },
-                      style: const TextStyle(
-                          fontFamily: "Roboto", color: Colors.white),
-                      decoration: InputDecoration(
-                          labelText: "Enter Your Email",
-                          labelStyle: const TextStyle(
-                              color: Colors.white, fontFamily: "Roboto"),
-                          prefixIcon: const Icon(
-                            Icons.email,
-                            color: Color(0xff04BF68),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white))),
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "The field is empty !";
-                        } else if (value.length < 8) {
-                          return "The password is too short !";
-                        }
-                      },
-                      keyboardType: TextInputType.visiblePassword,
-                      style: const TextStyle(
-                          fontFamily: "Roboto", color: Colors.white),
+                    CustomPassword(
                       obscureText: controller.show_pass,
                       controller: controller.password,
-                      decoration: InputDecoration(
-                          labelText: "Enter Your Password",
-                          labelStyle: const TextStyle(
-                              color: Colors.white, fontFamily: "Roboto"),
-                          prefixIcon: const Icon(
-                            Icons.lock,
-                            color: Color(0xff04BF68),
-                          ),
-                          suffixIcon: InkWell(
-                            child: Icon(
-                              controller.show_pass
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Color(0xff04BF68),
-                            ),
-                            onTap: () {
-                              controller.showPassword();
-                            },
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15).r,
-                              borderSide:
-                                  const BorderSide(color: Colors.white))),
+                      function: () {
+                        controller.showPassword();
+                      },
                     ),
                     SizedBox(
                       height: 35.h,
                     ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if (controller.globalKey.currentState!.validate()) {
-                            FirebaseAuthController.firebaseAuthHelper
-                                .createAccount(Users(
-                                    email: controller.email.text,
-                                    password: controller.password.text,
-                                    name: controller.username.text,
-                                    phone: controller.phone.text));
-                            Get.to(() => SelectPhotoScreen());
-                          }
-                        },
-                        child: Text(
-                          "SIGN UP",
-                          style: TextStyle(fontFamily: "Roboto"),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xff04BF68),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15).r),
-                            padding: const EdgeInsets.all(15)),
-                      ),
-                    ),
+                    CustomButton(
+                        name: "SIGN UP",
+                        function: () async {
+                          register(controller);
+                        }),
                     SizedBox(
                       height: 25.h,
                     ),
@@ -261,7 +92,7 @@ class BodySignUp extends StatelessWidget {
                           child: Text(
                             "Login Now ",
                             style: TextStyle(
-                                color: Color(0xff04BF68),
+                                color: const Color(0xff04BF68),
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.bold),
                           ),

@@ -1,3 +1,4 @@
+import 'package:chat_app/core/shared_perf.dart';
 import 'package:chat_app/view/screen/launch_screen.dart';
 import 'package:chat_app/view/screen/login_screen.dart';
 import 'package:chat_app/view/screen/main_screen.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefController().initSharedPreferences();
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
