@@ -9,7 +9,7 @@ class MessageTextField extends StatelessWidget {
 
   MessageTextField(this.currentId, this.friendId);
 
-  TextEditingController _controller = TextEditingController();
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class MessageTextField extends StatelessWidget {
         children: [
           Expanded(
               child: TextField(
-            controller: _controller,
+            controller: controller,
+            style: const TextStyle(color: Colors.white),
             decoration: InputDecoration(
                 hintText: "Type your Message",
                 hintStyle: TextStyle(
@@ -31,67 +32,71 @@ class MessageTextField extends StatelessWidget {
                 filled: true,
                 border: InputBorder.none,
                 enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.white.withOpacity(0.1)),
                     borderRadius: BorderRadius.circular(20).r),
                 focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.white.withOpacity(0.1)),
                     borderRadius: BorderRadius.circular(20).r)),
           )),
           SizedBox(
-            width: 20.w,
+            width: 10.w,
           ),
           GestureDetector(
             onTap: () async {
-              String message = _controller.text;
-              _controller.clear();
-              await FirebaseFirestore.instance
-                  .collection('Users')
-                  .doc(currentId)
-                  .collection('messages')
-                  .doc(friendId)
-                  .collection('chats')
-                  .add({
-                "senderId": currentId,
-                "receiverId": friendId,
-                "message": message,
-                "type": "text",
-                "time": DateTime.now(),
-              }).then((value) {
-                FirebaseFirestore.instance
+              if (controller.text.isNotEmpty) {
+                String message = controller.text;
+                controller.clear();
+                await FirebaseFirestore.instance
                     .collection('Users')
                     .doc(currentId)
                     .collection('messages')
                     .doc(friendId)
-                    .set({
-                  'last_msg': message,
+                    .collection('chats')
+                    .add({
+                  "senderId": currentId,
+                  "receiverId": friendId,
+                  "message": message,
+                  "type": "text",
+                  "time": DateTime.now(),
+                }).then((value) {
+                  FirebaseFirestore.instance
+                      .collection('Users')
+                      .doc(currentId)
+                      .collection('messages')
+                      .doc(friendId)
+                      .set({
+                    'last_msg': message,
+                  });
                 });
-              });
 
-              await FirebaseFirestore.instance
-                  .collection('Users')
-                  .doc(friendId)
-                  .collection('messages')
-                  .doc(currentId)
-                  .collection("chats")
-                  .add({
-                "senderId": currentId,
-                "receiverId": friendId,
-                "message": message,
-                "type": "text",
-                "time": DateTime.now(),
-              }).then((value) {
-                FirebaseFirestore.instance
+                await FirebaseFirestore.instance
                     .collection('Users')
                     .doc(friendId)
                     .collection('messages')
                     .doc(currentId)
-                    .set({"last_msg": message});
-              });
+                    .collection("chats")
+                    .add({
+                  "senderId": currentId,
+                  "receiverId": friendId,
+                  "message": message,
+                  "type": "text",
+                  "time": DateTime.now(),
+                }).then((value) {
+                  FirebaseFirestore.instance
+                      .collection('Users')
+                      .doc(friendId)
+                      .collection('messages')
+                      .doc(currentId)
+                      .set({"last_msg": message});
+                });
+              }
             },
             child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Constant.colorSecondary,
-              ),
+              padding: const EdgeInsets.all(15),
+              decoration:const BoxDecoration(
+                  shape: BoxShape.circle, color: Constant.colorSecondary),
               child: const Icon(
                 Icons.send,
                 color: Colors.white,

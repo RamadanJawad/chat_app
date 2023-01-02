@@ -22,7 +22,7 @@ class SingleMessage extends StatelessWidget {
                 margin: const EdgeInsets.all(16),
                 constraints: BoxConstraints(maxWidth: 220.w),
                 decoration: BoxDecoration(
-                    color: isMe ? Colors.black : Constant.colorSecondary,
+                    color: isMe ? Colors.orange : Constant.colorSecondary,
                     borderRadius: isMe
                         ? const BorderRadius.only(
                             topLeft: Radius.circular(15),
