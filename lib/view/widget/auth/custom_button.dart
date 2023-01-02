@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,7 +21,7 @@ class CustomButton extends StatelessWidget {
           style: TextStyle(fontFamily: "Roboto"),
         ),
         style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xff04BF68),
+            backgroundColor: Constant.colorSecondary,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15).r),
             padding: const EdgeInsets.all(15)),

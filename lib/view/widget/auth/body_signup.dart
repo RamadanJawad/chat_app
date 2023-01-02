@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:chat_app/controller/signup_controller.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/core/register.dart';
 import 'package:chat_app/view/widget/auth/custom_button.dart';
 import 'package:chat_app/view/widget/auth/custom_filed.dart';
@@ -31,7 +32,7 @@ class BodySignUp extends StatelessWidget {
                           controller.getImage();
                         },
                         child: CircleAvatar(
-                            radius: 60,
+                            radius: 60.r,
                             backgroundColor: Colors.white,
                             backgroundImage: controller.file == null
                                 ? null
@@ -40,7 +41,7 @@ class BodySignUp extends StatelessWidget {
                                 ? const Icon(
                                     Icons.add_photo_alternate,
                                     size: 50,
-                                    color: Color(0xff04BF68),
+                                    color: Constant.colorSecondary,
                                   )
                                 : null),
                       ),
@@ -92,7 +93,7 @@ class BodySignUp extends StatelessWidget {
                           child: Text(
                             "Login Now ",
                             style: TextStyle(
-                                color: const Color(0xff04BF68),
+                                color: Constant.colorSecondary,
                                 fontSize: 16.sp,
                                 fontWeight: FontWeight.bold),
                           ),

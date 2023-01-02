@@ -16,9 +16,8 @@ class FirebaseAuthController {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: user.email!, password: user.password!);
       String id = userCredential.user!.uid;
-
+      SharedPrefController().saveUid(uid: id);
       FirebaseFireStoreHelper.fireStoreHelper.SaveUserData(user, id);
-      
       return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == "weak-password") {

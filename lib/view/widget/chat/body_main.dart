@@ -31,7 +31,7 @@ class BodyMain extends StatelessWidget {
                       suffixIcon: InkWell(
                         child: const Icon(
                           Icons.close,
-                          color: Color(0xff04BF68),
+                          color: Constant.colorSecondary,
                         ),
                         onTap: () {
                           controller.username.clear();
@@ -59,7 +59,7 @@ class BodyMain extends StatelessWidget {
                     onPressed: controller.onSearch,
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                            borderRadius: BorderRadius.circular(10).r),
                         padding: const EdgeInsets.all(15),
                         backgroundColor: Constant.colorSecondary,
                         foregroundColor: Colors.white),
@@ -81,13 +81,13 @@ class BodyMain extends StatelessWidget {
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(
                               controller.userMap!['imageUrl'].toString()),
-                          radius: 25,
+                          radius: 25.r,
                         ),
                         title: Text(
                           controller.userMap!['name'],
-                          style: const TextStyle(
+                          style:  TextStyle(
                             color: Colors.white,
-                            fontSize: 17,
+                            fontSize: 17.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

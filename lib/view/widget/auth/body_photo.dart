@@ -1,5 +1,7 @@
 import 'package:chat_app/controller/photo_controller.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:io';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -19,7 +21,7 @@ class BodySelectPhoto extends StatelessWidget {
                   controller.getImage();
                 },
                 child: CircleAvatar(
-                    radius: 60,
+                    radius: 60.r,
                     backgroundColor: Colors.white,
                     backgroundImage: controller.file == null
                         ? null
@@ -28,7 +30,7 @@ class BodySelectPhoto extends StatelessWidget {
                         ? Icon(
                             Icons.add_photo_alternate,
                             size: 50,
-                            color: Color(0xff04BF68),
+                            color: Constant.colorSecondary,
                           )
                         : null),
               ),

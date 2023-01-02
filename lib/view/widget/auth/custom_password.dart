@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,12 +30,12 @@ class CustomPassword extends StatelessWidget {
               const TextStyle(color: Colors.white, fontFamily: "Roboto"),
           prefixIcon: const Icon(
             Icons.lock,
-            color: Color(0xff04BF68),
+            color: Constant.colorSecondary,
           ),
           suffixIcon: InkWell(
             child: Icon(
               obscureText ? Icons.visibility : Icons.visibility_off,
-              color: Color(0xff04BF68),
+              color: Constant.colorSecondary,
             ),
             onTap: function,
           ),

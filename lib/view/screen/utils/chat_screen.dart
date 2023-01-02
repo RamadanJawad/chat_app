@@ -1,11 +1,9 @@
-import 'package:chat_app/controller/chat_controller.dart';
 import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/view/widget/chat/message.dart';
 import 'package:chat_app/view/widget/chat/single_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChatScreen extends StatelessWidget {
   final String currentUser;
@@ -26,6 +24,22 @@ class ChatScreen extends StatelessWidget {
       backgroundColor: Constant.colorPrimary,
       appBar: AppBar(
         backgroundColor: Constant.colorSecondary,
+        actions: [
+          InkWell(
+            child:const Icon(Icons.call),
+            onTap: () {},
+          ),
+          SizedBox(
+            width: 15.w,
+          ),
+          InkWell(
+            child: Icon(Icons.video_call),
+            onTap: () {},
+          ),
+          SizedBox(
+            width: 15.w,
+          ),
+        ],
         title: Row(
           children: [
             CircleAvatar(
@@ -44,6 +58,7 @@ class ChatScreen extends StatelessWidget {
                   if (snapshot.data != null) {
                     return Container(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(friendName),
                           Text(
@@ -77,7 +92,7 @@ class ChatScreen extends StatelessWidget {
                     .collection('messages')
                     .doc(friendId)
                     .collection('chats')
-                    .orderBy("date", descending: true)
+                    .orderBy("time", descending: true)
                     .snapshots(),
                 builder: (context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
@@ -93,9 +108,15 @@ class ChatScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           bool isMe = snapshot.data.docs[index]['senderId'] ==
                               currentUser;
+                          Timestamp t = snapshot.data.docs[index]['time'];
+                          DateTime dateTime = t.toDate();
                           return SingleMessage(
-                              message: snapshot.data.docs[index]['message'],
-                              isMe: isMe);
+                            message: snapshot.data.docs[index]['message'],
+                            isMe: isMe,
+                            time: dateTime.hour.toString() +
+                                ":" +
+                                dateTime.minute.toString(),
+                          );
                         });
                   }
                   return const Center(child: CircularProgressIndicator());

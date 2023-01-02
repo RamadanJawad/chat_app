@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:chat_app/controller/home_controller.dart';
 import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/core/shared_perf.dart';
 import 'package:chat_app/view/screen/auth/login_screen.dart';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String path = SharedPrefController().image!;
+    HomeController controller = Get.put(HomeController());
     return Scaffold(
       backgroundColor: Constant.colorPrimary,
       appBar: AppBar(

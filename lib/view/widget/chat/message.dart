@@ -1,24 +1,21 @@
 import 'package:chat_app/core/constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MessageTextField extends StatefulWidget {
+class MessageTextField extends StatelessWidget {
   final String currentId;
   final String friendId;
 
   MessageTextField(this.currentId, this.friendId);
 
-  @override
-  _MessageTextFieldState createState() => _MessageTextFieldState();
-}
-
-class _MessageTextFieldState extends State<MessageTextField> {
   TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Constant.colorPrimary,
-      padding:const EdgeInsetsDirectional.all(8),
+      padding: const EdgeInsetsDirectional.all(8),
       child: Row(
         children: [
           Expanded(
@@ -26,16 +23,20 @@ class _MessageTextFieldState extends State<MessageTextField> {
             controller: _controller,
             decoration: InputDecoration(
                 hintText: "Type your Message",
-                hintStyle: TextStyle(fontFamily: "Tajawal", fontSize: 18),
-                fillColor: Colors.grey[100],
+                hintStyle: TextStyle(
+                    fontFamily: "Tajawal",
+                    fontSize: 18.sp,
+                    color: Colors.white),
+                fillColor: Colors.white.withOpacity(0.1),
                 filled: true,
-                enabledBorder:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                border: InputBorder.none,
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20).r),
                 focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10))),
+                    borderRadius: BorderRadius.circular(20).r)),
           )),
           SizedBox(
-            width: 20,
+            width: 20.w,
           ),
           GestureDetector(
             onTap: () async {
@@ -43,22 +44,22 @@ class _MessageTextFieldState extends State<MessageTextField> {
               _controller.clear();
               await FirebaseFirestore.instance
                   .collection('Users')
-                  .doc(widget.currentId)
+                  .doc(currentId)
                   .collection('messages')
-                  .doc(widget.friendId)
+                  .doc(friendId)
                   .collection('chats')
                   .add({
-                "senderId": widget.currentId,
-                "receiverId": widget.friendId,
+                "senderId": currentId,
+                "receiverId": friendId,
                 "message": message,
                 "type": "text",
-                "date": FieldValue.serverTimestamp(),
+                "time": DateTime.now(),
               }).then((value) {
                 FirebaseFirestore.instance
                     .collection('Users')
-                    .doc(widget.currentId)
+                    .doc(currentId)
                     .collection('messages')
-                    .doc(widget.friendId)
+                    .doc(friendId)
                     .set({
                   'last_msg': message,
                 });
@@ -66,32 +67,32 @@ class _MessageTextFieldState extends State<MessageTextField> {
 
               await FirebaseFirestore.instance
                   .collection('Users')
-                  .doc(widget.friendId)
+                  .doc(friendId)
                   .collection('messages')
-                  .doc(widget.currentId)
+                  .doc(currentId)
                   .collection("chats")
                   .add({
-                "senderId": widget.currentId,
-                "receiverId": widget.friendId,
+                "senderId": currentId,
+                "receiverId": friendId,
                 "message": message,
                 "type": "text",
-                "date": FieldValue.serverTimestamp(),
+                "time": DateTime.now(),
               }).then((value) {
                 FirebaseFirestore.instance
                     .collection('Users')
-                    .doc(widget.friendId)
+                    .doc(friendId)
                     .collection('messages')
-                    .doc(widget.currentId)
+                    .doc(currentId)
                     .set({"last_msg": message});
               });
             },
             child: Container(
-              padding:const EdgeInsets.all(8),
-              decoration:const BoxDecoration(
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Constant.colorSecondary,
               ),
-              child:const Icon(
+              child: const Icon(
                 Icons.send,
                 color: Colors.white,
               ),

@@ -1,3 +1,4 @@
+import 'package:chat_app/core/shared_perf.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,20 +6,11 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController with WidgetsBindingObserver {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  Map<String, dynamic>? currentMap;
-  Future<dynamic> readData() async {
-    FirebaseFirestore firestore = FirebaseFirestore.instance;
-    await firestore.collection("Users").get().then((value) {
-      currentMap = value.docs[0].data();
-      update();
-    });
-    update();
-  }
 
   void setStatus(String status) async {
     await firestore
         .collection("Users")
-        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .doc(SharedPrefController().uid)
         .update({"status": status});
   }
 

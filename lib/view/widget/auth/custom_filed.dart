@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constant.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,7 +26,7 @@ class CustomFiled extends StatelessWidget {
               const TextStyle(color: Colors.white, fontFamily: "Roboto"),
           prefixIcon: const Icon(
             Icons.person,
-            color: Color(0xff04BF68),
+            color: Constant.colorSecondary,
           ),
           focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15).r,

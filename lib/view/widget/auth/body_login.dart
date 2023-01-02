@@ -1,4 +1,5 @@
 import 'package:chat_app/controller/login_controller.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/models/UsersModel.dart';
 import 'package:chat_app/view/screen/utils/home_screen.dart';
@@ -93,7 +94,7 @@ class BodyLogin extends StatelessWidget {
                         child: Text(
                           "Register Now ",
                           style: TextStyle(
-                              color: Color(0xff04BF68),
+                              color: Constant.colorSecondary,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold),
                         ),
