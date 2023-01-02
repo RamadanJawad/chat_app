@@ -1,10 +1,11 @@
 import 'package:chat_app/controller/login_controller.dart';
 import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/models/UsersModel.dart';
-import 'package:chat_app/view/screen/main_screen.dart';
-import 'package:chat_app/view/widget/custom_button.dart';
-import 'package:chat_app/view/widget/custom_filed.dart';
-import 'package:chat_app/view/widget/custom_password.dart';
+import 'package:chat_app/view/screen/utils/home_screen.dart';
+import 'package:chat_app/view/screen/utils/search_screen.dart';
+import 'package:chat_app/view/widget/auth/custom_button.dart';
+import 'package:chat_app/view/widget/auth/custom_filed.dart';
+import 'package:chat_app/view/widget/auth/custom_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -72,7 +73,7 @@ class BodyLogin extends StatelessWidget {
                               Users(
                                   email: controller.email.text,
                                   password: controller.password.text));
-                          Get.to(() =>const MainScreen());
+                          Get.to(() =>const HomeScreen());
                         }
                       }),
                   SizedBox(

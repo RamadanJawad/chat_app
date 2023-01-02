@@ -3,7 +3,8 @@ import 'package:chat_app/controller/signup_controller.dart';
 import 'package:chat_app/core/shared_perf.dart';
 import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/models/UsersModel.dart';
-import 'package:chat_app/view/screen/main_screen.dart';
+import 'package:chat_app/view/screen/utils/home_screen.dart';
+import 'package:chat_app/view/screen/utils/search_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,12 @@ void register(SignUpController controller) async {
       name: controller.username.text,
       image: url,
     ));
-    
+
     SharedPrefController().saveEmail(email: controller.email.text);
     SharedPrefController().saveName(username: controller.username.text);
     SharedPrefController().saveImage(path: controller.file!.path.toString());
-    Get.to(() => MainScreen());
+    
+    Get.to(() =>const HomeScreen());
   }
   Get.delete();
 }

@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:chat_app/controller/signup_controller.dart';
 import 'package:chat_app/core/register.dart';
-import 'package:chat_app/view/widget/custom_button.dart';
-import 'package:chat_app/view/widget/custom_filed.dart';
-import 'package:chat_app/view/widget/custom_password.dart';
+import 'package:chat_app/view/widget/auth/custom_button.dart';
+import 'package:chat_app/view/widget/auth/custom_filed.dart';
+import 'package:chat_app/view/widget/auth/custom_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

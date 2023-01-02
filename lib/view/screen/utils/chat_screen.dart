@@ -1,8 +1,11 @@
-import 'package:chat_app/view/widget/message.dart';
-import 'package:chat_app/view/widget/single_message.dart';
+import 'package:chat_app/controller/chat_controller.dart';
+import 'package:chat_app/core/constant.dart';
+import 'package:chat_app/view/widget/chat/message.dart';
+import 'package:chat_app/view/widget/chat/single_message.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatScreen extends StatelessWidget {
   final String currentUser;
@@ -20,10 +23,9 @@ class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff292F3F),
+      backgroundColor: Constant.colorPrimary,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xff292F3F),
+        backgroundColor: Constant.colorSecondary,
         title: Row(
           children: [
             CircleAvatar(
@@ -33,10 +35,28 @@ class ChatScreen extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Text(
-              friendName,
-              style: TextStyle(fontSize: 20),
-            )
+            StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection("Users")
+                    .doc(friendId)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.data != null) {
+                    return Container(
+                      child: Column(
+                        children: [
+                          Text(friendName),
+                          Text(
+                            snapshot.data!['status'],
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                })
           ],
         ),
       ),

@@ -1,5 +1,5 @@
 import 'package:chat_app/controller/forgetPass_controller.dart';
-import 'package:chat_app/view/widget/body_forget.dart';
+import 'package:chat_app/view/widget/auth/body_forget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';

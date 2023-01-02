@@ -1,3 +1,4 @@
+import 'package:chat_app/core/shared_perf.dart';
 import 'package:chat_app/firebase/FirebaseFireStoreHelper.dart';
 import 'package:chat_app/models/UsersModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +16,9 @@ class FirebaseAuthController {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: user.email!, password: user.password!);
       String id = userCredential.user!.uid;
+
       FirebaseFireStoreHelper.fireStoreHelper.SaveUserData(user, id);
+      
       return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == "weak-password") {

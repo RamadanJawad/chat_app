@@ -1,4 +1,5 @@
 import 'package:chat_app/controller/forgetPass_controller.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/models/UsersModel.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class BodyForgetPassword extends StatelessWidget {
                           color: Colors.white, fontFamily: "Roboto"),
                       prefixIcon: const Icon(
                         Icons.person,
-                        color: Color(0xff04BF68),
+                        color: Constant.colorSecondary,
                       ),
                       focusedErrorBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15).r,
@@ -111,7 +112,7 @@ class BodyForgetPassword extends StatelessWidget {
                       style: TextStyle(fontFamily: "Roboto"),
                     ),
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff04BF68),
+                        backgroundColor: Constant.colorSecondary,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15).r),
                         padding: const EdgeInsets.all(15)),

@@ -1,5 +1,5 @@
 import 'package:chat_app/controller/signup_controller.dart';
-import 'package:chat_app/view/widget/body_signup.dart';
+import 'package:chat_app/view/widget/auth/body_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

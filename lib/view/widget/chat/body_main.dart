@@ -1,7 +1,8 @@
 import 'dart:io';
-import 'package:chat_app/controller/home_controller.dart';
+import 'package:chat_app/controller/search_controller.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/core/shared_perf.dart';
-import 'package:chat_app/view/screen/chat_screen.dart';
+import 'package:chat_app/view/screen/utils/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -12,39 +13,13 @@ class BodyMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String path = SharedPrefController().image!;
-    return GetBuilder<HomeController>(
+    return GetBuilder<SearchController>(
       builder: (controller) {
         return SafeArea(
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: FileImage(File(path)),
-                      radius: 25.r,
-                    ),
-                    SizedBox(
-                      width: 15.w,
-                    ),
-                    Text(
-                      "Welcome ",
-                      style: TextStyle(
-                          fontSize: 20.sp,
-                          fontFamily: "Tajawal",
-                          color: Colors.white),
-                    ),
-                    Text(
-                      SharedPrefController().username!,
-                      style: TextStyle(
-                          fontSize: 20.sp,
-                          fontFamily: "Tajawal",
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ],
-                ),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -62,7 +37,7 @@ class BodyMain extends StatelessWidget {
                           controller.username.clear();
                         },
                       ),
-                      labelText: "Enter Your Ussername",
+                      labelText: "Enter Your Username",
                       labelStyle: const TextStyle(color: Colors.white),
                       prefixIcon: const Icon(
                         Icons.person,
@@ -70,10 +45,10 @@ class BodyMain extends StatelessWidget {
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15).r,
-                          borderSide: BorderSide(color: Colors.white)),
+                          borderSide: const BorderSide(color: Colors.white)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(color: Colors.white))),
+                          borderSide: const BorderSide(color: Colors.white))),
                 ),
                 SizedBox(
                   height: 10.h,
@@ -86,7 +61,7 @@ class BodyMain extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         padding: const EdgeInsets.all(15),
-                        backgroundColor: Color(0xff04BF68),
+                        backgroundColor: Constant.colorSecondary,
                         foregroundColor: Colors.white),
                     child: const Text("Search"),
                   ),

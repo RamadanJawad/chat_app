@@ -23,6 +23,9 @@ class SharedPrefController {
   Future<void> saveImage({required String path}) async {
     await sharedPreferences.setString("imagePath", path);
   }
+  Future<void> saveUid({required String uid}) async {
+    await sharedPreferences.setString("uid", uid);
+  }
 
   String? get email{
     return sharedPreferences.getString("email");
@@ -32,5 +35,8 @@ class SharedPrefController {
   }
   String? get image{
     return sharedPreferences.getString("imagePath");
+  }
+  String? get uid{
+    return sharedPreferences.getString("uid");
   }
 }

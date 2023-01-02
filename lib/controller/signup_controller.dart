@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:chat_app/view/screen/login_screen.dart';
+import 'package:chat_app/view/screen/auth/login_screen.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,6 +1,5 @@
-
-import 'package:chat_app/view/screen/forgetpass_screen.dart';
-import 'package:chat_app/view/screen/signup_screen.dart';
+import 'package:chat_app/view/screen/auth/forgetpass_screen.dart';
+import 'package:chat_app/view/screen/auth/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -52,7 +52,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
                 "receiverId": widget.friendId,
                 "message": message,
                 "type": "text",
-                "date": DateTime.now(),
+                "date": FieldValue.serverTimestamp(),
               }).then((value) {
                 FirebaseFirestore.instance
                     .collection('Users')
@@ -75,7 +75,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
                 "receiverId": widget.friendId,
                 "message": message,
                 "type": "text",
-                "date": DateTime.now(),
+                "date": FieldValue.serverTimestamp(),
               }).then((value) {
                 FirebaseFirestore.instance
                     .collection('Users')

@@ -1,5 +1,5 @@
 import 'package:chat_app/controller/photo_controller.dart';
-import 'package:chat_app/view/widget/body_photo.dart';
+import 'package:chat_app/view/widget/auth/body_photo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
