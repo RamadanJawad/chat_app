@@ -1,4 +1,5 @@
 import 'package:chat_app/controller/launch_controller.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +12,7 @@ class LaunchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     LaunchController controller = Get.put(LaunchController());
     return Scaffold(
-      backgroundColor: Color(0xff292F3F),
+      backgroundColor: Constant.colorPrimary,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

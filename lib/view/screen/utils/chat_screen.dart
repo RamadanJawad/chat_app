@@ -26,7 +26,7 @@ class ChatScreen extends StatelessWidget {
         backgroundColor: Constant.colorSecondary,
         actions: [
           InkWell(
-            child:const Icon(Icons.call),
+            child: const Icon(Icons.call),
             onTap: () {},
           ),
           SizedBox(
@@ -98,7 +98,13 @@ class ChatScreen extends StatelessWidget {
                   if (snapshot.hasData) {
                     if (snapshot.data.docs.length < 1) {
                       return const Center(
-                        child: Text("Say Hi"),
+                        child: Text(
+                          "Say Hi",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              ),
+                        ),
                       );
                     }
                     return ListView.builder(

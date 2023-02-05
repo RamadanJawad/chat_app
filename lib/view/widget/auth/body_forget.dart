@@ -27,7 +27,7 @@ class BodyForgetPassword extends StatelessWidget {
                   "Resset Password",
                   style: TextStyle(
                       color: Colors.white,
-                      fontFamily: "Roboto",
+                      
                       fontSize: 30.sp),
                 ),
                 SizedBox(
@@ -38,7 +38,7 @@ class BodyForgetPassword extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       color: Colors.white60,
-                      fontFamily: "Roboto",
+                      
                       fontSize: 17.sp),
                 ),
                 SizedBox(
@@ -53,11 +53,11 @@ class BodyForgetPassword extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   controller: controller.email,
                   style: const TextStyle(
-                      fontFamily: "Roboto", color: Colors.white),
+                       color: Colors.white),
                   decoration: InputDecoration(
                       labelText: "Enter Your Email",
                       labelStyle: const TextStyle(
-                          color: Colors.white, fontFamily: "Roboto"),
+                          color: Colors.white),
                       prefixIcon: const Icon(
                         Icons.person,
                         color: Constant.colorSecondary,
@@ -94,14 +94,14 @@ class BodyForgetPassword extends StatelessWidget {
                             "*Note",
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
-                                fontFamily: "Cairo",
+                                
                                 fontSize: 19,
                                 color: Color(0xff04BF68)),
                           ),
                           messageText: const Text(
                             "Please check your email !",
                             textDirection: TextDirection.ltr,
-                            style: TextStyle(fontFamily: "Cairo", fontSize: 18),
+                            style: TextStyle( fontSize: 18),
                           ),
                           snackPosition: SnackPosition.BOTTOM,
                         );
@@ -109,7 +109,7 @@ class BodyForgetPassword extends StatelessWidget {
                     },
                     child: Text(
                       "SEND",
-                      style: TextStyle(fontFamily: "Roboto"),
+                      style: TextStyle(),
                     ),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Constant.colorSecondary,

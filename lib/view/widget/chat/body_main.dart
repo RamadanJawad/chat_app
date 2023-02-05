@@ -12,7 +12,6 @@ class BodyMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String path = SharedPrefController().image!;
     return GetBuilder<SearchController>(
       builder: (controller) {
         return SafeArea(
@@ -26,7 +25,7 @@ class BodyMain extends StatelessWidget {
                 TextFormField(
                   controller: controller.username,
                   style: const TextStyle(
-                      fontFamily: "Tajawal", color: Colors.white),
+                      color: Colors.white),
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
                         child: const Icon(
@@ -85,7 +84,7 @@ class BodyMain extends StatelessWidget {
                         ),
                         title: Text(
                           controller.userMap!['name'],
-                          style:  TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 17.sp,
                             fontWeight: FontWeight.w500,

@@ -1,8 +1,9 @@
-import 'package:chat_app/core/shared_perf.dart';
+import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/firebase/FirebaseFireStoreHelper.dart';
 import 'package:chat_app/models/UsersModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class FirebaseAuthController {
@@ -10,14 +11,16 @@ class FirebaseAuthController {
   static FirebaseAuthController firebaseAuthHelper = FirebaseAuthController._();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  String? uid;
+  String? id;
 
   Future createAccount(Users user) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
           email: user.email!, password: user.password!);
-      String id = userCredential.user!.uid;
-      SharedPrefController().saveUid(uid: id);
-      FirebaseFireStoreHelper.fireStoreHelper.SaveUserData(user, id);
+      uid = userCredential.user!.uid;
+      FirebaseFireStoreHelper.fireStoreHelper.SaveUserData(user, uid!);
+      // SharedPrefController().saveUid(uid: id);
       return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == "weak-password") {
@@ -37,6 +40,7 @@ class FirebaseAuthController {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
           email: users.email!, password: users.password!);
+      id = userCredential.user!.uid;
       return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-disabled") {
@@ -61,17 +65,16 @@ class FirebaseAuthController {
         "",
         "",
         snackStyle: SnackStyle.FLOATING,
-        margin: EdgeInsets.all(10),
-        titleText: const Text(
+        margin: const EdgeInsets.all(10),
+        titleText: Text(
           "*Note",
           textDirection: TextDirection.rtl,
-          style: TextStyle(
-              fontFamily: "Cairo", fontSize: 19, color: Color(0xff04BF68)),
+          style: TextStyle(fontSize: 19.sp, color: Constant.colorSecondary),
         ),
         messageText: Text(
           e.message!,
           textDirection: TextDirection.rtl,
-          style: TextStyle(fontFamily: "Cairo", fontSize: 18),
+          style: TextStyle(fontSize: 18.sp),
         ),
         snackPosition: SnackPosition.BOTTOM,
       );

@@ -45,6 +45,7 @@ dependencies:
   flutter_screenutil: ^5.6.0
   image_picker: ^0.8.6
   shared_preferences: ^2.0.15
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
@@ -84,27 +85,27 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Tajawal
-      fonts:
-        - asset: assets/fonts/tajawal/Tajawal-Light.ttf
-          weight: 300
-        - asset: assets/fonts/tajawal/Tajawal-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/tajawal/Tajawal-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/tajawal/Tajawal-Bold.ttf
-          weight: 700
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/roboto/Roboto-Light.ttf
-          weight: 300
-        - asset: assets/fonts/roboto/Roboto-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/roboto/Roboto-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/roboto/Roboto-Bold.ttf
-          weight: 700
+  # fonts:
+  #   - family: Tajawal
+  #     fonts:
+  #       - asset: assets/fonts/tajawal/Tajawal-Light.ttf
+  #         weight: 300
+  #       - asset: assets/fonts/tajawal/Tajawal-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/tajawal/Tajawal-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/tajawal/Tajawal-Bold.ttf
+  #         weight: 700
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/roboto/Roboto-Light.ttf
+  #         weight: 300
+  #       - asset: assets/fonts/roboto/Roboto-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/roboto/Roboto-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/roboto/Roboto-Bold.ttf
+  #         weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

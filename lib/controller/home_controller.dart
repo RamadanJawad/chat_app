@@ -6,12 +6,16 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController with WidgetsBindingObserver {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  DocumentSnapshot? snapshot;
 
-  void setStatus(String status) async {
-    await firestore
+  void setStatus(String status){
+    Future.delayed(Duration(seconds: 3),()async{
+      await firestore
         .collection("Users")
-        .doc(SharedPrefController().uid)
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .update({"status": status});
+    update();
+    });
   }
 
   @override
@@ -23,6 +27,7 @@ class HomeController extends GetxController with WidgetsBindingObserver {
       // offline
       setStatus("Offline");
     }
+    update();
   }
 
   @override

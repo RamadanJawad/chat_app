@@ -7,7 +7,6 @@ class LoginController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
   GlobalKey<FormState> globalKey = GlobalKey();
-
   bool show_pass = true;
 
   void goToForgetPassword() {

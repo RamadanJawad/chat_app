@@ -3,7 +3,7 @@
    <application
         android:label="chat_app"
         android:name="${applicationName}"
-        android:icon="@drawable/logo">
+        android:icon="@drawable/chatlogo">
         <activity
             android:name=".MainActivity"
             android:exported="true"

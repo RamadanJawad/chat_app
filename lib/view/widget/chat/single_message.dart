@@ -34,10 +34,7 @@ class SingleMessage extends StatelessWidget {
                             bottomRight: Radius.circular(15))),
                 child: Text(
                   "$message ",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Tajawal",
-                      fontSize: 17.sp),
+                  style: TextStyle(color: Colors.white, fontSize: 17.sp),
                 )),
           ],
         ),

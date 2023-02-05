@@ -1,9 +1,11 @@
 import 'package:chat_app/controller/home_controller.dart';
 import 'package:chat_app/core/constant.dart';
 import 'package:chat_app/core/shared_perf.dart';
+import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/view/screen/utils/chat_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -17,10 +19,18 @@ class BodyHome extends StatelessWidget {
       return StreamBuilder(
           stream: FirebaseFirestore.instance
               .collection('Users')
-              .doc(SharedPrefController().uid)
+              .doc(FirebaseAuth.instance.currentUser!.uid)
               .collection('messages')
               .snapshots(),
           builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CupertinoActivityIndicator(
+                  color: Colors.white,
+                  animating: true,
+                ),
+              );
+            }
             if (snapshot.hasData) {
               if (snapshot.data.docs.length < 1) {
                 return Column(
@@ -30,14 +40,14 @@ class BodyHome extends StatelessWidget {
                       "assets/images/chat.png",
                       color: Colors.white,
                       width: double.infinity,
-                      height: 250.h,
+                      height: 200.h,
                     ),
                     Text(
                       "No Chats Available !",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 22.sp,
-                          fontFamily: "Tajawal"),
+                          ),
                     ),
                   ],
                 );
@@ -69,7 +79,7 @@ class BodyHome extends StatelessWidget {
                                 friend['name'],
                                 style: TextStyle(
                                     color: Colors.white,
-                                    fontFamily: "Roboto",
+                                    
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18.sp),
                               ),
@@ -101,9 +111,10 @@ class BodyHome extends StatelessWidget {
                     );
                   });
             }
-            return const Center(
-              child: CircularProgressIndicator(
-                color: Constant.colorSecondary,
+            return Center(
+              child: CupertinoActivityIndicator(
+                color: Colors.white,
+                animating: true,
               ),
             );
           });

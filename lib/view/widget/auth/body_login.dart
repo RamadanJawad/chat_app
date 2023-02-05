@@ -1,5 +1,6 @@
 import 'package:chat_app/controller/login_controller.dart';
 import 'package:chat_app/core/constant.dart';
+import 'package:chat_app/core/login.dart';
 import 'package:chat_app/firebase/firebase_auth.dart';
 import 'package:chat_app/models/UsersModel.dart';
 import 'package:chat_app/view/screen/utils/home_screen.dart';
@@ -59,7 +60,7 @@ class BodyLogin extends StatelessWidget {
                       child: Text(
                         "Forget Password ?",
                         style: TextStyle(
-                            fontFamily: "Roboto",
+                            
                             color: Colors.white,
                             fontSize: 15.sp),
                       )),
@@ -69,13 +70,7 @@ class BodyLogin extends StatelessWidget {
                   CustomButton(
                       name: "SIGN IN",
                       function: () {
-                        if (controller.globalKey.currentState!.validate()) {
-                          FirebaseAuthController.firebaseAuthHelper.signIn(
-                              Users(
-                                  email: controller.email.text,
-                                  password: controller.password.text));
-                          Get.to(() =>const HomeScreen());
-                        }
+                        login(controller);
                       }),
                   SizedBox(
                     height: 40.r,

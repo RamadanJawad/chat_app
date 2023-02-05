@@ -25,7 +25,7 @@ class MessageTextField extends StatelessWidget {
             decoration: InputDecoration(
                 hintText: "Type your Message",
                 hintStyle: TextStyle(
-                    fontFamily: "Tajawal",
+                    
                     fontSize: 18.sp,
                     color: Colors.white),
                 fillColor: Colors.white.withOpacity(0.1),
